@@ -56,7 +56,7 @@ In this workshop, you will:
 ### Contents
 
 1. [Introduction](1-introduction/)
-2. [Deployment Architecture](2-architecture/)
+2. [Deployment Architecture](2-deployment-architecture/)
 3. [Environment Setup](3-setup-environment/)
 4. [Build the CI/CD Pipeline](4-build-cicd-pipeline/)
 5. [Monitoring & Automatic Rollback](5-monitoring-rollback/)

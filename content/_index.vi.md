@@ -56,7 +56,7 @@ Trong workshop này, bạn sẽ:
 ### Nội dung
 
 1. [Giới thiệu](1-introduction/)
-2. [Kiến trúc triển khai](2-architecture/)
+2. [Kiến trúc triển khai](2-deployment-architecture/)
 3. [Thiết lập môi trường](3-setup-environment/)
 4. [Xây dựng CI/CD pipeline](4-build-cicd-pipeline/)
 5. [Giám sát & tự động rollback](5-monitoring-rollback/)
