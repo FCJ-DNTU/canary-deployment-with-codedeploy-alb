@@ -1,48 +1,39 @@
 +++
-title = "Tạo mới tài khoản AWS"
+title = "Giới thiệu"
 date = 2020-05-14T00:38:32+07:00
 weight = 1
 chapter = false
 pre = "<b>1. </b>"
 +++
 
+**Canary Deployment** là một kỹ thuật triển khai ứng dụng giúp giảm thiểu rủi ro bằng cách chỉ triển khai phiên bản mới cho một phần nhỏ người dùng trước khi áp dụng cho toàn bộ hệ thống. Với sự phát triển của các hệ thống microservices và DevOps, Canary Deployment đã trở thành một phương pháp phổ biến để triển khai ứng dụng một cách an toàn và hiệu quả.
 
-**Nội dung:**
-- [Tạo tài khoản AWS](#tạo-tài-khoản-aws)
-- [Thêm phương thức thanh toán](#thêm-phương-thức-thanh-toán)
-- [Xác thực số điện thoại của bạn](#xác-thực-số-điện-thoại-của-bạn)
-- [Chọn Support Plan](#chọn-support-plan)
-- [Đợi account của bạn được kích hoạt](#đợi-account-của-bạn-được-kích-hoạt)
+![Canary Deployment](/images/1-introduction/canary.png)
 
-#### Tạo tài khoản AWS
+### Cách Canary Deployment hoạt động
 
-1. Đi đến trang [Amazon Web Service homepage](https://aws.amazon.com/).
-2. Chọn **Create an AWS Account** ở góc trên bên phải.  
-    - ***Ghi Chú:** Nếu bạn không thấy **Create an AWS Account**, chọn **Sign In to the Console** sau đó chọn **Create a new AWS Account**.*
-3. Nhập thông tin tài khoảng và chọn **Continue**.  
-    - ***Quan Trọng**: Hãy chắc chắn bạn nhập đúng thông tin, đặc biệt là email.* 
-4. Chọn loại account.  
-    - ***Ghi chú**: Personal và Professional đều có chung tính năng.*
-5. Nhập thông tin công ty hoặc thông tin cá nhân của bạn.
-6. Đọc và đồng ý [AWS Customer Agreement](https://aws.amazon.com/agreement/).
-7. Chọn **Create Account** và **Continue**.
+1. **Triển khai phiên bản mới**: Triển khai phiên bản mới và chạy song song với phiên bản cũ.
 
-#### Thêm phương thức thanh toán
+2. **Chuyển lưu lượng nhỏ**: Chuyển một phần nhỏ lưu lượng truy cập (1-5%) sang phiên bản mới.
 
-- Nhập thông tin thẻ tín dụng của bạn và chọn **Verify and Add**.  
-    - ***Ghi chú**: Bạn có thể chọn 1 địa chỉ khác cho tài khoản của bạn bằng cách chọn **Use a new address** trước khi **Verify and Add**.*
+3. **Kiểm thử và giám sát**: Kiểm thử và giám sát phiên bản mới trong môi trường thực tế.
 
-#### Xác thực số điện thoại của bạn
+4. **Chuyển toàn bộ lưu lượng**: Nếu phiên bản mới hoạt động ổn định, chuyển toàn bộ lưu lượng sang phiên bản mới.
 
-1. Nhập số điện thoại.
-2. Nhập mã security check sau đó chọn **Send SMS**.
-3. Nhập mã code được gửi đến số điện thoại của bạn.
+Canary Deployment có thể được thực hiện **2 bước** (two-step) hoặc **tuyến tính** (linear):
 
-#### Chọn Support Plan
+- **Two-step:** Triển khai phiên bản mới → cho nhóm nhỏ người dùng dùng thử → nếu đạt yêu cầu → mở rộng cho toàn bộ môi trường.
 
-- Trong trang **Select a support plan**, chọn 1 plan có hiệu lực, để so sánh giữa cách plan, bạn hãy xem [Compare AWS Support Plans](https://aws.amazon.com/premiumsupport/plans/).
+- **Linear:** Tăng traffic sang phiên bản mới theo từng đợt nhỏ cho đến khi tất cả người dùng sử dụng bản phát hành mới.
 
-#### Đợi account của bạn được kích hoạt
+### Lý do áp dụng:
 
-- Sau khi chọn **Support plan**, account thường được kích sau sau vài phút, nhưng quá trình có thể cần tốn đến 24 tiếng. Bạn vẫn có thể đăng nhập vào account AWS lúc này, Trang chủ AWS có thể sẽ hiển thị một nút “Complete Sign Up” trong thời gian này, cho dù bạn đã hoàn thành tất cả các bước ở phần đăng kí.  
-- Sau khi nhận được email xác nhận account của bạn đã được kích hoạt, bạn có thể truy cập vào tất cả dịch vụ của AWS.
+- **Giảm downtime:** Phát hiện lỗi sớm trên nhóm người dùng nhỏ.
+
+- **Tự động rollback:** Nếu phát sinh lỗi, hệ thống tự động chuyển traffic trở lại phiên bản ổn định.
+
+- **Quản lý traffic linh hoạt:** Điều phối traffic qua **Application Load Balancer (ALB)**.
+
+- **A/B Testing:** So sánh song song hiệu suất các phiên bản.
+
+- **Monitoring & Performance Analysis:** Theo dõi, thu thập số liệu và ra quyết định tự động.
